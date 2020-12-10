@@ -13,15 +13,64 @@ function printQuestionMarks(num) {
 
 const orm = {
   create(table, columns, ...newVals) {
-    const tableStr = table.toString();
-    const [vals] = newVals;
-    if (!tableStr || !columns || !vals) {
-      throw "All variables are required for orm.create and must not be null or undefined";
-    }
-    const queryString = `INSERT INTO ? (?) VALUES (${printQuestionMarks(
-      newVals.length
-    )})`;
-    connection.query(queryString, [tableStr, columns, ...newVals]);
+    return new Promise((resolve, reject) => {
+      const [vals] = newVals;
+      if (!table || !columns || !vals) {
+        return reject(
+          "All variables are required for orm.create and must not be null or undefined"
+        );
+      }
+      const queryString = `INSERT INTO ?? (??) 
+      VALUES (${printQuestionMarks(newVals.length)})`;
+      connection.query(
+        queryString,
+        [table, columns, ...newVals],
+        (err, data) => {
+          if (err) return reject(err);
+          resolve(data);
+        }
+      );
+    });
+  },
+  // taken from Byron's example in class and later posted on Slack
+  read(table, whichCols, valOfCol) {
+    return new Promise((resolve, reject) => {
+      if (!table || !columns || !valOfCol) {
+        return reject(
+          "All variables are required for orm.read and must not be null or undefined"
+        );
+      }
+      const queryString = "SELECT * FROM ?? WHERE ?? = ?";
+      connection.query(
+        queryString,
+        [table, whichCols, valOfCol],
+        (err, data) => {
+          if (err) return reject(err);
+          resolve(data);
+        }
+      );
+    });
+  },
+  update(table, valsObj, conditionCol, condition) {
+    return new Promise((resolve, reject) => {
+      const objType = typeof valsObj;
+      if (!table || !valsObj || !conditionCol || !condition) {
+        return reject(
+          "All variables are required for orm.update and must not be null or undefined"
+        );
+      }
+      if (objType !== "object") return reject("valsObj must be an object");
+      const queryString = `UPDATE ?? SET ?? WHERE ?? = ?`;
+      connection.query(
+        queryString,
+        [table, valsObj, conditionCol, condition],
+        (err,
+        (data) => {
+          if (err) return reject(err);
+          resolve(data);
+        })
+      );
+    });
   },
 };
 module.exports = orm;
