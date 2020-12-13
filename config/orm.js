@@ -33,7 +33,7 @@ const orm = {
     });
   },
   // taken from Byron's example in class and later posted on Slack
-  read(table, conditionCol, valOfCol) {
+  readAll(table, conditionCol, valOfCol) {
     return new Promise((resolve, reject) => {
       if (!table || !columns || !valOfCol) {
         return reject(
@@ -51,7 +51,7 @@ const orm = {
       );
     });
   },
-  update(table, valsObj, conditionCol, condition) {
+  updateOne(table, valsObj, conditionCol, condition) {
     return new Promise((resolve, reject) => {
       const objType = typeof valsObj;
       if (!table || !valsObj || !conditionCol || !condition) {
@@ -72,7 +72,7 @@ const orm = {
       );
     });
   },
-  delete(table, conditionCol, condition) {
+  deleteOne(table, conditionCol, condition) {
     return new Promise((resolve, reject) => {
       if (!table || !columns || !condition) {
         return reject(
