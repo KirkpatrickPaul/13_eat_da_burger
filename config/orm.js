@@ -33,7 +33,7 @@ const orm = {
     });
   },
   // taken from Byron's example in class and later posted on Slack
-  read(table, whichCols, valOfCol) {
+  read(table, conditionCol, valOfCol) {
     return new Promise((resolve, reject) => {
       if (!table || !columns || !valOfCol) {
         return reject(
@@ -43,7 +43,7 @@ const orm = {
       const queryString = "SELECT * FROM ?? WHERE ?? = ?";
       connection.query(
         queryString,
-        [table, whichCols, valOfCol],
+        [table, conditionCol, valOfCol],
         (err, data) => {
           if (err) return reject(err);
           resolve(data);
@@ -69,6 +69,24 @@ const orm = {
           if (err) return reject(err);
           resolve(data);
         })
+      );
+    });
+  },
+  delete(table, conditionCol, condition) {
+    return new Promise((resolve, reject) => {
+      if (!table || !columns || !condition) {
+        return reject(
+          "All variables are required for orm.delete and must not be null or undefined"
+        );
+      }
+      const queryString = "DELETE FROM ?? WHERE ?? = ?";
+      connection.query(
+        queryString,
+        [table, conditionCol, condition],
+        (err, data) => {
+          if (err) return reject(err);
+          resolve(data);
+        }
       );
     });
   },
