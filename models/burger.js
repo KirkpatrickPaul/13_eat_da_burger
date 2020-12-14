@@ -2,7 +2,7 @@ const orm = require("../config/orm.js");
 
 const burger = {
   getAll() {
-    return orm.readAll("burgers", 1, 1);
+    return orm.readAll("burgers");
   },
   createOne(burgerName) {
     return orm.create("burgers", "name", burgerName);

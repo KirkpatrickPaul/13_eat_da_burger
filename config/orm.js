@@ -1,3 +1,4 @@
+const { param } = require("../controllers/index.js");
 const connection = require("./connection.js");
 
 // alright, I finally saw the sense in this. Taken from activity 17 from week 13
@@ -33,22 +34,24 @@ const orm = {
     });
   },
   // taken from Byron's example in class and later posted on Slack
-  readAll(table, conditionCol, valOfCol) {
+  readAll(table, conditionCol = "", valOfCol = "") {
     return new Promise((resolve, reject) => {
-      if (!table || !columns || !valOfCol) {
+      if (!table) {
         return reject(
-          "All variables are required for orm.read and must not be null or undefined"
+          "Table variable is required for orm.read and must not be null or undefined"
         );
       }
-      const queryString = "SELECT * FROM ?? WHERE ?? = ?";
-      connection.query(
-        queryString,
-        [table, conditionCol, valOfCol],
-        (err, data) => {
-          if (err) return reject(err);
-          resolve(data);
-        }
-      );
+      let queryString = "SELECT * FROM ??";
+      let arguments = [table];
+      if (conditionCol && valOfCol) {
+        queryString += " WHERE ?? = ?";
+        arguments.push(conditionCol);
+        arguments.push(valOfCol);
+      }
+      connection.query(queryString, arguments, (err, data) => {
+        if (err) return reject(err);
+        resolve(data);
+      });
     });
   },
   updateOne(table, valsObj, conditionCol, condition) {
@@ -74,7 +77,7 @@ const orm = {
   },
   deleteOne(table, conditionCol, condition) {
     return new Promise((resolve, reject) => {
-      if (!table || !columns || !condition) {
+      if (!table || !conditionCol || !condition) {
         return reject(
           "All variables are required for orm.delete and must not be null or undefined"
         );

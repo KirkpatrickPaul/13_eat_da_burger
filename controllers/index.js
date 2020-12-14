@@ -6,7 +6,7 @@ router.get("/", async (_, res) => {
   try {
     const burgers = await burger.getAll();
     res.status(200);
-    res.render("index", burgers);
+    res.json(burgers);
   } catch (error) {
     console.log(error);
     res.status(500);
@@ -15,14 +15,15 @@ router.get("/", async (_, res) => {
 });
 
 router
-  .route("api/burgers/:id?")
+  .route("/api/burgers/:id?")
   .post(async (req, res) => {
     try {
       const burgerName = req.body.burgerName;
       const newBurgerObj = await burger.createOne(burgerName);
       res.status(201);
-      res.json(newBurgerObj);
+      res.render("index", newBurgerObj);
     } catch (error) {
+      console.log('req.body :>> ', req.body);
       console.log(error);
       res.status(500);
       res.send(error);
@@ -51,3 +52,4 @@ router
       res.send(error);
     }
   });
+module.exports = router;
