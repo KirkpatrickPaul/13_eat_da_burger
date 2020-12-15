@@ -1,19 +1,3 @@
-// function deleteHandler() {
-//   console.log("deleteHandler");
-//   const id = $(this).data("id");
-//   $.ajax("/api/burgers/" + id, { type: "DELETE" }).then(() => {
-//     location.reload();
-//   });
-// }
-
-// function eatHandler() {
-//   const id = $(this).data("id");
-//   console.log("eatHandler");
-//   $.ajax("/api/burgers/" + id, { type: "PUT" }).then(() => {
-//     location.reload();
-//   });
-// }
-
 $(document).ready(function () {
   $(".create-form").on("submit", function (event) {
     event.preventDefault();
@@ -35,7 +19,6 @@ $(document).ready(function () {
   });
   $(".eat-btn").click(function () {
     const id = $(this).data("id");
-    console.log("eatHandler");
     $.ajax("/api/burgers/" + id, { type: "PUT" }).then(() => {
       location.reload();
     });

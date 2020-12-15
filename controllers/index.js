@@ -23,7 +23,6 @@ router
       res.status(201);
       res.render("index", newBurgerObj);
     } catch (error) {
-      console.log("req.body :>> ", req.body);
       console.log(error);
       res.status(500);
       res.send(error);
