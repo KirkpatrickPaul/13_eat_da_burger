@@ -1,0 +1,39 @@
+<h1 class="text-center bg-light pb-1"><inline class="text-muted">Ham</inline>Burgers</h1>
+<br/>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-sm bg-light">
+      <h3>Tasty Burgers!</h3>
+      <hr/>
+      {{#each burgers}} 
+        {{#unless eaten}} 
+          {{> burgers/burger-card eaten=false}}
+        {{/unless}} 
+      {{/each}}
+    </div>
+    <div class="col-sm bg-warning">
+      <h3><i>The fallen that gave sustenance.</i></h3>
+      <hr/>
+      {{#each burgers}} 
+        {{#if eaten}} 
+          {{> burgers/burger-card eaten=true}}
+        {{/if}} 
+      {{/each}}
+    </div>
+  </div>
+</div>
+<br/>
+<div class="container">
+  <form class="create-form">
+    <div class="form-row">
+      <div class="col-6 bg-light">
+        <h3 class="p-3">Add a Tasty Burger!</h3>
+        <div class="form-group px-3">
+          <label for="burger-create">The Burger's Name</label>
+          <input type="text" class="form-control" id="burger-name" />
+          <button type="submit" class="btn btn-info mt-3">Burger Me!</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

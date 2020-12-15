@@ -63,15 +63,16 @@ const orm = {
         );
       }
       if (objType !== "object") return reject("valsObj must be an object");
-      const queryString = `UPDATE ?? SET ?? WHERE ?? = ?`;
+      const col = Object.keys(valsObj);
+      const val = valsObj[col];
+      const queryString = `UPDATE ?? SET ?? = ? WHERE ?? = ?`;
       connection.query(
         queryString,
-        [table, valsObj, conditionCol, condition],
-        (err,
-        (data) => {
+        [table, ...col, val, conditionCol, condition],
+        (err, data) => {
           if (err) return reject(err);
           resolve(data);
-        })
+        }
       );
     });
   },

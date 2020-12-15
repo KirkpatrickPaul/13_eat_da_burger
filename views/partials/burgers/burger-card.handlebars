@@ -1,0 +1,19 @@
+<div
+  class="card mb-3{{#if eaten}} bg-warning border-dark text-dark{{else}} text-white bg-info{{/if}}"
+>
+  <div class="card-body">
+    <h5 class="card-title"><i class="fas fa-hamburger"></i> {{name}}</h5>
+    <p class="card-text">
+      {{#if eaten}}That was a delicious burger!{{else}}A delicious burger that
+      you can't wait to eat!{{/if}}
+    </p>
+    {{#if eaten}}
+      <button type="button" class="btn btn-dark delete-btn" data-id="{{id}}">
+        <i class="fas fa-heart-broken  text-danger"></i> Forget My Sacrifice.</button> 
+
+    {{else}}
+      <button type="button" class="btn btn-warning eat-btn" data-id="{{id}}">
+        <i class="fas fa-teeth-open"></i> Eat Me!</button> 
+    {{/if}}
+  </div>
+</div>
