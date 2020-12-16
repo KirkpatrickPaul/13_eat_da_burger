@@ -18,18 +18,12 @@ Are you dieting? Holed up hiding from the po-po? Or just hundreds of miles from 
 
 ## Usage Guide
 
-Using this app is as simple as navigating in a browser to https://frozen-sands-92246.herokuapp.com/.
+Using this app is as simple as navigating in a browser to https://blooming-beach-22911.herokuapp.com/. If you managed to do that correctly, it should look like this:
 
-Once there, the user can simply click the "Get Started" button or navigate directly to the webpage URL [/notes](https://frozen-sands-92246.herokuapp.com/notes/). Everything else should be self-explanitory.
+![Eat Da Burger Beatiful Screenshot](./public/assets/images/Example.jpg)
 
-### Style Recommendations
-
-It is recommended to users to make their titles as descriptive as possible. This way, they can easily recognize what the notes are about later. Titles like "Note1" may be easier to think up at the moment, but can lead to frustration down the line if a user has several accumulated notes over several days.
-
-### Help and Hints
-
-For users that are unaware of common computer conventions (Hey, no judgement here), the save button looks like an icon of a 3½ inch floppy disk, the delete button looks like an icon of a trash-can, and the edit button looks like an icon of a pencil-tip.
+Once there, the user can simply add a new burger, or eat da burgers that are already provided. When thinking up burgers, the sky is the limit!
 
 ## Questions and Reporting
 
-This app was an assignement to help me learn server-side programming and node.js. There are other apps that do this better than mine, so support will be limited to non-existent. If, for some reason, you feel the need to use my app and run into problems, feel free to contact me through [my github](https://kirkpatrickpaul.github.io/contact.html).
+This app was an assignement to help me learn server-side programming and model-view-controllers. I do not forsee updating this at any time, as it's prefect just the way it is. If, for some reason, you feel the need to use my app and run into problems, feel free to contact me through [my github](https://kirkpatrickpaul.github.io/contact.html).
